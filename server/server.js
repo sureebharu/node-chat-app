@@ -12,7 +12,14 @@ var io = socketIO(server);
 app.use(express.static(PathPublic));
 io.on('connection',(socket)=>{
  console.log('New user connected');
-
+ 
+ socket.emit('NewMsg',{
+     from:'jkbjkj',
+     text:'How are you?',
+ })
+ socket.on('NewMsg',(newEmail)=>{
+  console.log(newEmail);
+ })
  socket.on('disconnect',()=>{
      console.log('user disconnected');
  })
