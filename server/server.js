@@ -13,7 +13,11 @@ app.use(express.static(PathPublic));
 io.on('connection',(socket)=>{
  console.log('New user connected');
  
-
+socket.emit('NewMsg',{from:'Admin', text:'Welcome to chat room !!!'});
+socket.broadcast.emit('NewMsg',{
+    from:'Admin',
+    text:'Bharathi joined'
+})
  socket.on('NewMsg',(newEmail)=>{
   console.log(newEmail);
   io.emit('NewMsg',{
